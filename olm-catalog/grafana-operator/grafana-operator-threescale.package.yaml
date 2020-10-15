@@ -1,0 +1,5 @@
+channels:
+- currentCSV: grafana-operator-threescale.v3.5.0-1
+  name: alpha
+defaultChannel: alpha
+packageName: grafana-operator-threescale
