@@ -1,0 +1,5 @@
+channels:
+- currentCSV: prometheus-exporter-operator-threescale.v0.2.1-1
+  name: alpha
+defaultChannel: alpha
+packageName: prometheus-exporter-operator-threescale
