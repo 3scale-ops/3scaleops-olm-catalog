@@ -32,7 +32,7 @@ metadata:
       of grafana dashboards
     repository: https://github.com/3scale/prometheus-exporter-operator
     support: Red Hat, Inc.
-  name: prometheus-exporter-operator-threescale.v0.2.1
+  name: prometheus-exporter-operator-threescale.v0.2.1-1
   namespace: placeholder
 spec:
   apiservicedefinitions: {}

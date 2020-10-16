@@ -91,3 +91,35 @@ DEBUG:urllib3.connectionpool:Starting new HTTPS connection (1): quay.io:443
 DEBUG:urllib3.connectionpool:https://quay.io:443 "POST /cnr/api/v1/packages/3scaleops/prometheus-exporter-operator-threescale HTTP/1.1" 409 84
 ERROR:operatorcourier.push:{"error":{"code":"package-exists","details":{},"message":"package exists already"}}
 ```
+
+## Build catalog image
+
+Each time you push a new package to the app registry you need to recreate the catalog image with `make build-catalog`.
+
+**IMPORTANT**: you need to `docker login registry.redhat.io` with your access.redhat.com login for the **3scale-saas account**.
+**IMPORTANT**: you need to use openshift client version 4.4 or higher.
+
+```bash
+▶ make build-catalog
+IMPORTANT: you need to 'docker login registry.redhat.io' with your access.redhat.com login for the 3scale-saas account
+IMPORTANT: you need to use openshift client version 4.4 or higher
+oc adm catalog build \
+        --appregistry-org 3scaleops \
+        --filter-by-os="linux/amd64" \
+        --from=registry.redhat.io/openshift4/ose-operator-registry:v4.5 \
+        --to=quay.io/3scaleops/olm-catalog:latest
+using registry.redhat.io/openshift4/ose-operator-registry:v4.5 as a base image for buildingINFO[0011] loading Bundles                               dir=/tmp/cache-340886316/manifests-423752581
+INFO[0011] directory                                     dir=/tmp/cache-340886316/manifests-423752581 file=manifests-423752581 load=bundles
+INFO[0011] directory                                     dir=/tmp/cache-340886316/manifests-423752581 file=grafana-operator-threescale load=bundles
+INFO[0011] directory                                     dir=/tmp/cache-340886316/manifests-423752581 file=grafana-operator-threescale-sdhruam9 load=bundles
+INFO[0011] directory                                     dir=/tmp/cache-340886316/manifests-423752581 file=3.5.0-1 load=bundles
+INFO[0011] found csv, loading bundle                     dir=/tmp/cache-340886316/manifests-423752581 file=csv.yaml load=bundles
+INFO[0011] loading bundle file                           dir=/tmp/cache-340886316/manif
+[...]
+```
+
+The CatalogSource object has a refresh interval of 30 min. If you want the new operator release to be instantly available in the cluster, execute the following command in the target cluster:
+
+```bash
+oc -n openshift-marketplace delete pod -l olm.catalogSource=threescaleops
+```
