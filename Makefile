@@ -13,7 +13,7 @@ $(addprefix olm-verify-package-,$(OPERATORS)):
 $(addprefix olm-push-package-,$(OPERATORS)):
 	@[ -z $(RELEASE) ] && \
 		echo "Release missing. Example: 'make olm-push-package-prometheus-exporter-operator RELEASE=0.2.1-1'" && \
-		exit 1
+		exit 1 || true
 	operator-courier --verbose push olm-catalog/$(subst olm-push-package-,,$@) $(APPREGISTRY) $(subst olm-push-package-,,$@)-$(NAME_SUFIX) $(RELEASE) "$(AUTH_TOKEN)"
 
 build-catalog:
