@@ -1,0 +1,5 @@
+channels:
+- currentCSV: marin3r-threescale.v0.5.2-alpha1
+  name: alpha
+defaultChannel: alpha
+packageName: marin3r-threescale
