@@ -56,7 +56,7 @@ bundle-manifests: clean
 	mkdir -p $(MANIFESTS_DST_DIR)
 	cp -a $(TMP_DIR)/bundle/* $(MANIFESTS_DST_DIR)
 	cp -a $(TMP_DIR)/bundle.Dockerfile $(MANIFESTS_DST_DIR)
-	sed -E -i 's@bundle/@@' $(MANIFESTS_DST_DIR)/bundle.Dockerfile
+	sed -E -i '' 's@bundle/@@' $(MANIFESTS_DST_DIR)/bundle.Dockerfile
 	$(MAKE) $(PROJECT_NAME)-customize-bundle
 	$(MAKE) clean
 
