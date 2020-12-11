@@ -82,3 +82,4 @@ clean:
 	rm -rf $(BASE_TMP_DIR)
 
 include marin3r.mk
+include saas-operator.mk
