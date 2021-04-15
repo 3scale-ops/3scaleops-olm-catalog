@@ -1,3 +1,5 @@
+**This repository has been archived in** https://github.com/3scale-ops/3scaleops-olm-catalog/pull/12
+
 # quay.io/3scaleops OLM catalog management
 
 ## Repo's directory structure
